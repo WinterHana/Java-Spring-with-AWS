@@ -7,6 +7,10 @@ import lombok.Getter;
 
 import java.util.Map;
 
+/***
+ * @of() : OAuth2User에서 반환하는 사용자 정보는 Map이기 때문에 값 하나하나를 변환해야 한다.
+ * @toEntity : User 엔티티를 생성한다. 여기서는 처음 가입할 때 생성
+ */
 @Getter
 public class OAuthAttributes {
     private Map<String, Object> attributes;
