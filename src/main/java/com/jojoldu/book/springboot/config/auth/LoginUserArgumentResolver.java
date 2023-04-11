@@ -11,6 +11,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpSession;
 
+/***
+ * @supportsParameter() : 컨트롤러 메서드의 특정 파라미터를 지원하는지 판단한다.
+ * 여기서는 @LoginUser 어노테이션이 붙어 있고, 파라미터 클래스 타입이 SessionUser.class인 경우 true를 반환합니다.
+ *
+ */
 @RequiredArgsConstructor
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {

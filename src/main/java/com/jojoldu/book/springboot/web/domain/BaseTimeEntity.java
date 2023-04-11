@@ -10,8 +10,8 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 /***
  * Entity들의  createdDate, modifiedDate를 자동으로 관리하는 역할을 한다.
- * @MappedSuperclass : JPA Entity 클래스들이 BaseTimeEntity을 상속할 경우 필드들도 Column으로 인식하게 한다.
- * @EntityListeners(AuditingEntityListener.class) : Auditing 기능 추가
+ * @@MappedSuperclass : JPA Entity 클래스들이 BaseTimeEntity을 상속할 경우 필드들도 Column으로 인식하게 한다.
+ * @@EntityListeners(AuditingEntityListener.class) : Auditing 기능 추가
  */
 @Getter
 @MappedSuperclass

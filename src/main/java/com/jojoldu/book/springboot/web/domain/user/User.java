@@ -7,6 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/***
+ * @@Enumerated(EnumType.STRING) : JPA로 데이터베이스로 저장할 때 Enum 값을 어떤 형태로 저장할지를 결정한다.
+ * 기본적으로 int로 된 숫자가 저장되지만, 문자열로 저장될 수 있도록 따로 설정했다.
+ *
+ */
+
 @Getter
 @NoArgsConstructor
 @Table(name = "userInfo")

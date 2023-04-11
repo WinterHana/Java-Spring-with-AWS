@@ -34,6 +34,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
+        // Session에 저장된 값이 있으면 userName으로 등록, 없으면 로그인 버튼이 보이게 한다.
         if(user != null) {
             model.addAttribute("userName", user.getName());
         }
