@@ -15,14 +15,16 @@ import java.util.Map;
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
+    private Long id;
     private String name;
     private String email;
     private String picture;
 
     @Builder
-    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture) {
+    public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, Long id, String name, String email, String picture) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
+        this.id = id;
         this.name = name;
         this.email = email;
         this.picture = picture;
@@ -34,12 +36,13 @@ public class OAuthAttributes {
         if("naver".equals(registrationId)) {
             return ofNaver("id", attributes);
         }
+        else if("github".equals(registrationId)) {
+            return ofGithub(userNameAttributeName, attributes);
+        }
         return ofGoogle(userNameAttributeName, attributes);
     }
 
-    private static OAuthAttributes ofGoogle(String
-                                                    userNameAttributeName,
-                                            Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .name((String)attributes.get("name"))
                 .email((String)attributes.get("email"))
@@ -60,9 +63,19 @@ public class OAuthAttributes {
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
+
+    private static OAuthAttributes ofGithub(String userNameAttributeName, Map<String, Object> attributes) {
+        return OAuthAttributes.builder()
+                .name((String) attributes.get("name"))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
     public User toEntity(){
         return User.builder()
                 .name(name)
+                .id(id)
                 .email(email)
                 .picture(picture)
                 .role(Role.GUEST)
